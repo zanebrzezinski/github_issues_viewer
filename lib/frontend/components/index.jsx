@@ -10,7 +10,7 @@ var Index = React.createClass({
     var issues = issuesJSON.map(function(issue) {
       var labels = issue.labels.map(function(label) {
         return (
-          <li key={label.name}><a href={label.url}>{label.name}</a></li>
+          <li key={label.name} className="label"><a href={label.url}>{label.name}</a></li>
         );
       });
 
@@ -25,20 +25,20 @@ var Index = React.createClass({
 
       return(
         <ul key={issue.id} className="issue group">
-          <li className="issue-info">
+          <div className="issue-info">
             <div key="status" className="status">{status}</div>
+            <div key="id" className="id">{"#"+issue.id}</div>
             <a href={"https://github.com/" + issue.user.login}>
               <img key="avatar" className="avatar" src={issue.user.avatar_url}/>
               <div key="username" className="username">
                 {"@" + issue.user.login}
               </div>
             </a>
-            <div key="id" className="id">{"#"+issue.id}</div>
-          </li>
-          <ul key="labels">{labels}</ul>
+          </div>
           <li key="title" className="title">{issue.title}</li>
+          <ul key="labels">{labels}</ul>
           <li dangerouslySetInnerHTML={preview}></li>
-          <li key="numComments">{issue.comments + " comments"}</li>
+          <li key="numComments" className="numComments">{issue.comments + " comments"}</li>
         </ul>
       );
     });

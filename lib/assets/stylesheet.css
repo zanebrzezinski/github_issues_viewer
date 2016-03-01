@@ -30,18 +30,20 @@ ul {
   list-style: none;
 }
 
-li {
-  margin: 5px;
-}
-
 img {
   display: block;
-  width: 100%;
-  height: auto;
+  height: 100px;
+  width: auto;
+  margin: 10px
 }
 
 a {
   color: blue;
+}
+
+code {
+  background-color: #eee;
+  padding: 2px;
 }
 
 .group:after {
@@ -50,59 +52,77 @@ a {
   content: "";
 }
 
-/* ---APP --- */
+/* --- INDEX --- */
 
+.issues {
+  width: 800px;
+  margin: 40px auto;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+.issue {
+  position: relative;
+  border-bottom: 1px solid #eee;
+  border-radius: 5px;
+}
+
+.issue:hover {
+  background-color: #F5F5F5;
+}
+
+/* --- ISSUE INFO ---*/
+
+  .issue-info {
+    float: left;
+    margin: 10px;
+    width: 125px;
+  }
   .avatar {
     width: 50px;
     height: auto;
-  }
-
-  .issues {
-    width: 800px;
-    margin: 40px auto;
-    border: 1px solid #aaa;
-    border-radius: 5px;
-  }
-
-  .issue {
-    border-bottom: 1px solid #eee;
-    border-radius: 5px;
-  }
-
-  .issue:hover {
-    background-color: #F5F5F5;
+    margin: 5px;
   }
 
   .open-issue {
     color: green;
+    margin: 5px;
   }
 
   .closed-issue {
     color: red;
-  }
-
-  .issue-info {
-    float: left;
-  }
-
-  .username {
     margin: 5px;
-  }
-
-  .avatar {
-    margin: 5px;
-  }
-
-  .status {
-    display: inline;
   }
 
   .id {
-    display: inline;
+    display: block;
     color: #aaa;
+    margin: 5px;
   }
+
+/* --- ISSUE CONTENT --- */
 
   .title {
     font-size: 16px;
     font-weight: bold;
+    padding-top: 15px;
+  }
+
+  .label {
+    display: inline-block;
+    margin: 10px 10px 10px 0;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: #aaa;
+  }
+
+  .label > a {
+    color: #FFF;
+    padding: 5px;
+  }
+
+  .numComments {
+    position: absolute;
+    bottom: 10px;
+    right: 50px;
   }
