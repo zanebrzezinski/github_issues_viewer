@@ -37,8 +37,10 @@ var Index = React.createClass({
           </div>
           <li key="title" className="title">{issue.title}</li>
           <ul key="labels">{labels}</ul>
-          <li dangerouslySetInnerHTML={preview}></li>
-          <li key="numComments" className="numComments">{issue.comments + " comments"}</li>
+          <li dangerouslySetInnerHTML={preview} className="preview"></li>
+          <li key="numComments" className="numComments">
+            <i className="fa fa-comment-o"></i> {issue.comments + " comments"}
+          </li>
         </ul>
       );
     });

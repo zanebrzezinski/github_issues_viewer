@@ -98,6 +98,11 @@ code {
     display: block;
     color: #aaa;
     margin: 5px;
+    margin-top: 0;
+  }
+
+  .username {
+    margin: 5px;
   }
 
 /* --- ISSUE CONTENT --- */
@@ -121,8 +126,21 @@ code {
     padding: 5px;
   }
 
+  .preview {
+    margin: 10px;
+  }
+
   .numComments {
     position: absolute;
     bottom: 10px;
     right: 50px;
+    cursor: pointer;
+  }
+
+  .fa-comment-o {
+    margin: 5px;
+  }
+
+  .numComments:hover {
+    color: blue;
   }
