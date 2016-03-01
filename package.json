@@ -1,0 +1,31 @@
+{
+  "name": "github_issues_viewer",
+  "version": "1.0.0",
+  "description": "view issues using github api",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+  "node": "4.1.1",
+  "npm": "2.1.x"
+  },
+  "scripts": {
+  "postinstall": "./node_modules/.bin/webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-core": "^6.5.1",
+    "babel-loader": "^6.2.2",
+    "babel-preset-react": "^6.5.0",
+    "flux": "^2.1.1",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "webpack": "^1.12.13"
+  }
+}
