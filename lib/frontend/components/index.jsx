@@ -1,24 +1,24 @@
 var React = require('react');
 var marked = require('marked');
-var issues = require('./issues');
+var issuesJSON = require('./issues');
 
 
 var Index = React.createClass({
 
+
   render: function() {
 
-    
+    var issues = issuesJSON.map(function(issue) {
+      return(
+        <li key={issue.id}>
+          <div key="username">{issue.user.login}</div>
+          <div key="issue">{issue.title}</div>
+        </li>
+      );
+    });
 
-
-
-
-
-    var issues2 = issues;
     return(
-      <div
-        className="content"
-        dangerouslySetInnerHTML={this.rawMarkup()}
-      />
+      <ul>{issues}</ul>
     );
   }
 });
