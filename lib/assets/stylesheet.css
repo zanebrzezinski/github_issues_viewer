@@ -17,38 +17,92 @@ button, article, footer, small {
 
  /* --- ELEMENTS --- */
 
- body {
-   background: #FFF;
-   box-sizing: content-box;
-   font-family: sans-serif;
-   font-size: 16px;
-   line-height: 1.1666666666;
-   color: #000;
- }
+body {
+  background: #FFF;
+  box-sizing: content-box;
+  font-family: sans-serif;
+  font-size: 14px;
+  line-height: 1.1666666666;
+  color: #000;
+}
 
- ul {
-   list-style: none;
- }
+ul {
+  list-style: none;
+}
 
- img {
-   display: block;
-   width: 100%;
-   height: auto;
- }
+li {
+  margin: 5px;
+}
 
- .group:after {
-   clear: both;
-   display: block;
-   content: "";
- }
-
- /* ---APP --- */
-
- .avatar {
-  width: 50px;
+img {
+  display: block;
+  width: 100%;
   height: auto;
- }
+}
 
- .issue {
-  margin: 50px;
- }
+a {
+  color: blue;
+}
+
+.group:after {
+  clear: both;
+  display: block;
+  content: "";
+}
+
+/* ---APP --- */
+
+  .avatar {
+    width: 50px;
+    height: auto;
+  }
+
+  .issues {
+    width: 800px;
+    margin: 40px auto;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+  }
+
+  .issue {
+    border-bottom: 1px solid #eee;
+    border-radius: 5px;
+  }
+
+  .issue:hover {
+    background-color: #F5F5F5;
+  }
+
+  .open-issue {
+    color: green;
+  }
+
+  .closed-issue {
+    color: red;
+  }
+
+  .issue-info {
+    float: left;
+  }
+
+  .username {
+    margin: 5px;
+  }
+
+  .avatar {
+    margin: 5px;
+  }
+
+  .status {
+    display: inline;
+  }
+
+  .id {
+    display: inline;
+    color: #aaa;
+  }
+
+  .title {
+    font-size: 16px;
+    font-weight: bold;
+  }

@@ -2,7 +2,6 @@ var React = require('react');
 var marked = require('marked');
 var issuesJSON = require('./issues');
 
-
 var Index = React.createClass({
 
 
@@ -17,24 +16,29 @@ var Index = React.createClass({
 
       var status;
       if (issue.state === "open") {
-        status = <i className="fa fa-exclamation-circle"></i>;
+        status = <i className="fa fa-exclamation open-issue">Open</i>;
       } else {
-        status = <i className="fa fa-check-circle-o"></i>;
+        status = <i className="fa fa-check-circle-o closed-issue">Closed</i>;
       }
 
       var preview = {__html: marked(issue.body.slice(0,140))};
-      var title = {__html: marked(issue.title)};
 
       return(
-        <ul key={issue.id} className="issue">
-          <li key="avatar" className="avatar"><img src={issue.user.avatar_url}/></li>
-          <li key="username">{issue.user.login}</li>
-          <li key="status">{status}</li>
-          <li key="id">{issue.id}</li>
-          <li key="title" dangerouslySetInnerHTML={title}></li>
+        <ul key={issue.id} className="issue group">
+          <li className="issue-info">
+            <div key="status" className="status">{status}</div>
+            <a href={"https://github.com/" + issue.user.login}>
+              <img key="avatar" className="avatar" src={issue.user.avatar_url}/>
+              <div key="username" className="username">
+                {"@" + issue.user.login}
+              </div>
+            </a>
+            <div key="id" className="id">{"#"+issue.id}</div>
+          </li>
           <ul key="labels">{labels}</ul>
+          <li key="title" className="title">{issue.title}</li>
           <li dangerouslySetInnerHTML={preview}></li>
-          <li key="numComments">{issue.comments}</li>
+          <li key="numComments">{issue.comments + " comments"}</li>
         </ul>
       );
     });
