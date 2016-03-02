@@ -1,6 +1,5 @@
 var React = require('react');
 var marked = require('marked');
-var issuesJSON = require('./issues');
 
 var IndexItem = React.createClass ({
 
