@@ -13,7 +13,7 @@ var Index = React.createClass({
   },
 
   apiCallback: function(currentPage, lastPage) {
-    this.setState({page: currentPage, lastPage: lastPage});
+    this.setState({page: currentPage, lastPage: parseInt(lastPage)});
   },
 
   prevPage: function() {
@@ -29,6 +29,13 @@ var Index = React.createClass({
         this.apiCallback
       );
     }
+  },
+
+  jumpToPage: function(e) {
+    issuesUtil.fetchIssues(
+      parseInt(e.currentTarget.id),
+      this.apiCallback
+    );
   },
 
   componentDidMount: function() {
@@ -52,20 +59,36 @@ var Index = React.createClass({
 
     var pages = [];
     if (this.state.lastPage) {
-      for (var i = 0; i < this.state.lastPage; i++) {
-        if (i === this.state.page) {
-          pages.push(<p className="current page" key={i}>{i + 1}</p>);
+
+      if (this.state.page > 1) {
+        pages.push(
+          <li onClick={this.prevPage} key="prev" className="page iterator">previous</li>
+        );
+      }
+
+      for (var i = 0; i < 20 && this.state.page + 20 < this.state.lastPage; i++) {
+        var pageNum = this.state.page + i;
+        if (pageNum === this.state.page) {
+          pages.push(<li className="current page" onClick={this.jumpToPage}
+          id={pageNum} key={pageNum}>{pageNum}</li>);
         } else {
-          pages.push(<p className="page" key={i}>{i + 1}</p>);
+          pages.push(<li className="page" onClick={this.jumpToPage}
+          id={pageNum} key={pageNum}>{pageNum}</li>);
         }
+      }
+
+      if (this.state.page < this.state.lastPage) {
+        pages.push(
+          <li onClick={this.nextPage} key="next" className="page iterator">next</li>
+        );
       }
     }
 
     return(
       <div>
-        <p onClick={this.prevPage}>prev</p>
-        {pages}
-        <p onClick={this.nextPage}>next</p>
+        <div className="page-list">
+          <ul className="pages">{pages}</ul>
+        </div>
         <ul className="issues">{issues}</ul>
       </div>
     );
