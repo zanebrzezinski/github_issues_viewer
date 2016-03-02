@@ -13,7 +13,11 @@ var Index = React.createClass({
   },
 
   apiCallback: function(currentPage, lastPage) {
-    this.setState({page: currentPage, lastPage: parseInt(lastPage)});
+    if (this.state.lastPage) {
+      this.setState({page: currentPage});
+    } else {
+      this.setState({page: currentPage, lastPage: parseInt(lastPage)});
+    }
   },
 
   prevPage: function() {
@@ -66,14 +70,23 @@ var Index = React.createClass({
         );
       }
 
-      for (var i = 0; i < 20 && this.state.page + 20 < this.state.lastPage; i++) {
-        var pageNum = this.state.page + i;
-        if (pageNum === this.state.page) {
+      var i;
+      if (i < 5) {
+        i = 0;
+      } else if (this.state.page + 20 >= this.state.lastPage) {
+        i = this.state.lastPage - 20;
+      } else {
+        i = this.state.page;
+      }
+
+      var max = i + 20;
+      for (i; i <= max; i++) {
+        if (i === this.state.page) {
           pages.push(<li className="current page" onClick={this.jumpToPage}
-          id={pageNum} key={pageNum}>{pageNum}</li>);
+          id={i} key={i}>{i}</li>);
         } else {
           pages.push(<li className="page" onClick={this.jumpToPage}
-          id={pageNum} key={pageNum}>{pageNum}</li>);
+          id={i} key={i}>{i}</li>);
         }
       }
 
@@ -90,6 +103,9 @@ var Index = React.createClass({
           <ul className="pages">{pages}</ul>
         </div>
         <ul className="issues">{issues}</ul>
+        <div className="page-list">
+          <ul className="pages">{pages}</ul>
+        </div>
       </div>
     );
   }

@@ -77,6 +77,8 @@ code {
   }
 
   .pages {
+    width: 600px;
+    margin: 5px auto;
   }
 
   .page {
@@ -87,6 +89,11 @@ code {
     width: 20px;
     text-align: center;
     cursor: pointer;
+    font-size: 16px;
+  }
+
+  .page:hover {
+    background-color: #F5F5F5;
   }
 
   .iterator {
