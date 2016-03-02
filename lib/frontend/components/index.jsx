@@ -18,10 +18,7 @@ var Index = React.createClass({
 
   prevPage: function() {
     if (this.state.page > 1) {
-      issuesUtil.fetchIssues(
-        this.state.page - 1,
-        this.apiCallback
-      );
+      issuesUtil.fetchIssues(this.state.page - 1, this.apiCallback);
     }
   },
 
@@ -36,7 +33,7 @@ var Index = React.createClass({
 
   componentDidMount: function() {
     this.token = IssuesStore.addListener(this._onChange);
-    issuesUtil.fetchIssues();
+    issuesUtil.fetchIssues(this.state.page, this.apiCallback);
   },
 
   _onChange: function() {
@@ -53,11 +50,21 @@ var Index = React.createClass({
       });
     }
 
+    var pages = [];
+    if (this.state.lastPage) {
+      for (var i = 0; i < this.state.lastPage; i++) {
+        if (i === this.state.page) {
+          pages.push(<p className="current page" key={i}>{i + 1}</p>);
+        } else {
+          pages.push(<p className="page" key={i}>{i + 1}</p>);
+        }
+      }
+    }
+
     return(
       <div>
         <p onClick={this.prevPage}>prev</p>
-        <p>{this.state.page}</p>
-        <p>{this.state.lastPage}</p>
+        {pages}
         <p onClick={this.nextPage}>next</p>
         <ul className="issues">{issues}</ul>
       </div>
