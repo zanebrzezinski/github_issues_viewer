@@ -1,15 +1,15 @@
 var React = require('react');
 var marked = require('marked');
-var issuesJSON = require('./issues');
 var issuesUtil = require('../util/issues_util.js');
 var IssuesStore = require('../stores/issues_store');
 
 var IndexItem = require('./indexItem');
+var IssueModal = require('./issue_modal');
 
 var Index = React.createClass({
 
   getInitialState: function() {
-    return ({issues: null, page: 1, lastPage: null});
+    return ({issues: null, page: 1, lastPage: null, modal: null});
   },
 
   apiCallback: function(currentPage, lastPage) {
@@ -18,6 +18,14 @@ var Index = React.createClass({
     } else {
       this.setState({page: currentPage, lastPage: parseInt(lastPage)});
     }
+  },
+
+  showModal: function(issue) {
+    this.setState({modal: issue});
+  },
+
+  hideModal: function() {
+    this.setState({modal: null});
   },
 
   prevPage: function() {
@@ -56,9 +64,9 @@ var Index = React.createClass({
     if (this.state.issues) {
       issues = this.state.issues.map(function(issue) {
         return (
-          <IndexItem key={issue.id} issue={issue}/>
+          <IndexItem key={issue.id} issue={issue} clickHandler={this.showModal}/>
         );
-      });
+      }.bind(this));
     }
 
     var pages = [];
@@ -96,8 +104,7 @@ var Index = React.createClass({
         );
       }
     }
-
-    return(
+    content = (
       <div>
         <div className="page-list">
           <ul className="pages">{pages}</ul>
@@ -108,6 +115,18 @@ var Index = React.createClass({
         </div>
       </div>
     );
+
+    if (this.state.modal) {
+      return(
+        <div>
+          <IssueModal hideModal={this.hideModal} issue={this.state.modal}/>
+          {content}
+        </div>
+      );
+    } else {
+      return content;
+    }
+
   }
 });
 
