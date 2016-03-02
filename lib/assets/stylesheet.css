@@ -62,12 +62,16 @@ code {
   }
 
   .issue {
-    position: relative;
-    border-bottom: 1px solid #eee;
     border-radius: 5px;
   }
 
-  .issue:hover {
+  .issue-block {
+    position: relative;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .issue-block:hover {
     background-color: #F5F5F5;
   }
 
@@ -83,32 +87,28 @@ code {
 
   .page {
     display: inline-block;
-    padding: 2px;
-    border: 1px solid #aaa;
-    border-radius: 2px;
+    padding: 4px;
+    color: blue;
     width: 20px;
+    height: 20px;
     text-align: center;
     cursor: pointer;
     font-size: 16px;
+    margin: 2px;
   }
 
   .page:hover {
-    background-color: #F5F5F5;
-  }
-
-  .iterator {
-    width: auto;
+    color: red;
   }
 
   .current {
-    font-weight: bold
+    color: darkblue;
   }
 
 /* --- ISSUE INFO ---*/
 
   .issue-info {
     float: left;
-    margin: 10px;
     width: 125px;
   }
   .avatar {

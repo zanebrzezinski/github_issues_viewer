@@ -37,7 +37,7 @@ var IndexItem = React.createClass ({
     var preview = {__html: marked(previewText)};
 
     return(
-      <li>
+      <li className="issue-block">
         <ul key={issue.id} className="issue group">
           <div className="issue-info">
             <div key="status" className="status">{status}</div>

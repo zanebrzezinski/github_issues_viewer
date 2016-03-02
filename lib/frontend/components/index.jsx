@@ -66,20 +66,20 @@ var Index = React.createClass({
 
       if (this.state.page > 1) {
         pages.push(
-          <li onClick={this.prevPage} key="prev" className="page iterator">previous</li>
+          <li onClick={this.prevPage} key="prev" className="page iterator">&#60;</li>
         );
       }
 
       var i;
       if (i < 5) {
         i = 0;
-      } else if (this.state.page + 20 >= this.state.lastPage) {
-        i = this.state.lastPage - 20;
+      } else if (this.state.page + 15 >= this.state.lastPage) {
+        i = this.state.lastPage - 15;
       } else {
         i = this.state.page;
       }
 
-      var max = i + 20;
+      var max = i + 15;
       for (i; i <= max; i++) {
         if (i === this.state.page) {
           pages.push(<li className="current page" onClick={this.jumpToPage}
@@ -92,7 +92,7 @@ var Index = React.createClass({
 
       if (this.state.page < this.state.lastPage) {
         pages.push(
-          <li onClick={this.nextPage} key="next" className="page iterator">next</li>
+          <li onClick={this.nextPage} key="next" className="page iterator">&#62;</li>
         );
       }
     }
