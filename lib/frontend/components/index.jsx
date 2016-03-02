@@ -1,5 +1,4 @@
 var React = require('react');
-var marked = require('marked');
 var issuesUtil = require('../util/issues_util.js');
 var IssuesStore = require('../stores/issues_store');
 

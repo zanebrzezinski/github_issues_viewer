@@ -133,6 +133,7 @@ code {
     color: #aaa;
     margin: 5px;
     margin-top: 0;
+    cursor: pointer;
   }
 
   .username {
@@ -145,6 +146,7 @@ code {
     font-size: 16px;
     font-weight: bold;
     padding-top: 15px;
+    cursor: pointer;
   }
 
   .label {
@@ -188,12 +190,14 @@ code {
     height: 100%;
     opacity: .5;
     z-index: 50;
+    top: 0;
+    cursor: pointer;
   }
 
   .modal {
     position: fixed;
     left: calc(50% - 400px);
-    top: 200px;
+    top: 40px;
     width: 800px;
     margin: auto;
     background-color: white;
