@@ -9,7 +9,29 @@ var IndexItem = require('./indexItem');
 var Index = React.createClass({
 
   getInitialState: function() {
-    return ({issues: null});
+    return ({issues: null, page: 1, lastPage: null});
+  },
+
+  apiCallback: function(currentPage, lastPage) {
+    this.setState({page: currentPage, lastPage: lastPage});
+  },
+
+  prevPage: function() {
+    if (this.state.page > 1) {
+      issuesUtil.fetchIssues(
+        this.state.page - 1,
+        this.apiCallback
+      );
+    }
+  },
+
+  nextPage: function() {
+    if (this.state.page === null || this.state.page < this.state.lastPage) {
+      issuesUtil.fetchIssues(
+        this.state.page + 1,
+        this.apiCallback
+      );
+    }
   },
 
   componentDidMount: function() {
@@ -31,9 +53,14 @@ var Index = React.createClass({
       });
     }
 
-
     return(
-      <ul className="issues">{issues}</ul>
+      <div>
+        <p onClick={this.prevPage}>prev</p>
+        <p>{this.state.page}</p>
+        <p>{this.state.lastPage}</p>
+        <p onClick={this.nextPage}>next</p>
+        <ul className="issues">{issues}</ul>
+      </div>
     );
   }
 });

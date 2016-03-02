@@ -19,8 +19,14 @@ var IndexItem = React.createClass ({
     } else {
       status = <i className="fa fa-check-circle-o closed-issue">Closed</i>;
     }
-    var previewText = issue.body.slice(0,140);
-    var preview = {__html: previewText};
+
+    var previewText;
+    if (issue.body.length > 140) {
+      previewText = issue.body.slice(0,140) + "...";
+    } else {
+      previewText = issue.body.slice(0,140);
+    }
+    var preview = {__html: marked(previewText)};
 
     return(
       <li>
