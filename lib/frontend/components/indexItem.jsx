@@ -110,8 +110,7 @@ var IndexItem = React.createClass ({
               </a>
             </div>
             <div className="issue-body">
-              <li key="title" className="title no-hover">
-                {issue.title}</li>
+              <li key="title" className="title" dangerouslySetInnerHTML={title}></li>
               <ul key="labels" className="labels">{labels}</ul>
               <li dangerouslySetInnerHTML={preview} className="preview"></li>
             </div>

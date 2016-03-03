@@ -1,9 +1,9 @@
 # Github Issues Viewer
-## It's a thing for viewing issues on github.
+### It's a thing for viewing issues on github.
 
-To run, clone this repo and run `npm install`
+To run, clone this repo and run `npm install` and open 'index.html' in browser.
 
-or view live [here](issuesviewer.zanebrzezinski.com)
+or view live [here](https://issuesviewer.zanebrzezinski.com)
 
 # Features
  * Uses Github API to grab issues from npm repo.
@@ -16,9 +16,8 @@ or view live [here](issuesviewer.zanebrzezinski.com)
  * Renders markdown using [chjj's marked parser](https://github.com/chjj/marked)
  * Lists labels for each issue, with color of label determined by hex code sent up
  with Api.
- 
- ⋅⋅⋅* White labels are rendered slightly darker, as label text is set to white and is
- illegible otherwise.
+    * White labels are rendered slightly darker, as label text is set to white and is
+ otherwise illegible.
  * Uses regex to parse out @mentions and link to github user profile.
 
 #To Do
@@ -31,5 +30,10 @@ or view live [here](issuesviewer.zanebrzezinski.com)
   authenticate the request.  A rather easy fix, but felt out of the scope of this project.
   * Input field to look at issues for other repos.  Again, rather trivial to implement,
   just need to grab the contents of the field and configure the ajax request url accordingly.
+  * "Time Ago" stamps for comment and issue submissions.  Could have used a library, but would
+  rather write the code out myself as it's pretty simple to accomplish.
   * Styling.  Always styling.  In spending so much time looking at githubs issues pages,
   I've somewhat aped their droll styling.  Needs some more spice at the moment.
+  * Errors.  Some are implemented, but one can never underestimate the end-user's
+  ability to screw me up.  Of course, as more features are added, so too is the possibility
+  for more errors.
