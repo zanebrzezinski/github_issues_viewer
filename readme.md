@@ -5,6 +5,38 @@ To run, clone this repo and run `npm install` and open 'index.html' in browser.
 
 or view live [here](https://issuesviewer.zanebrzezinski.com)
 
+Because this is a frontend only project, there is currently no UI to authenticate
+the API requests to github.  The access token may be hard-coded in
+`lib/frontend/util/issues_util` by adding a `data` key to the ajax request as follows
+`$.ajax({
+  type: "GET",
+  url: "https://api.github.com/repos/npm/npm/issues",
+  data: {page: page, access_token: "ACCESS TOKEN GOES HERE" },
+  dataType: "json",
+  success: function(data, textStatus, request) {
+    //parse out last page number from response
+    lastPage = request.getResponseHeader(
+      "link").split(" ")[2]
+      .split("=")[1]
+      .split(">")[0];
+
+    ApiActions.receiveIssues(data);
+    cb && cb(page, lastPage);
+  },`
+
+or in the comments request like so
+
+`fetchComments: function(url, cb) {
+  $.ajax({
+    type: "GET",
+    url: url,
+    dataType: "json",
+    data: {access_token: "ACCESS TOKEN GOES HERE"}
+    success: function(data) {
+      ApiActions.receiveComments(data);
+    }
+  });
+}`
 # Features
  * Uses Github API to grab issues from npm repo.
  * Github API is automatically paginated, so there are controls at the top and
