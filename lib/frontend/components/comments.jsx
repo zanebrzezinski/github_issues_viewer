@@ -2,6 +2,7 @@ var React = require('react');
 var CommentsStore = require('../stores/comments_store');
 var issuesUtil = require('../util/issues_util.js');
 var marked = require('marked');
+var findAndReplaceUsername = require('../util/regex_util');
 
 var Comments = React.createClass({
 
@@ -27,7 +28,8 @@ var Comments = React.createClass({
     var comments;
     if (this.state.comments) {
       comments = this.state.comments.map(function(comment) {
-        var bodyText = marked(comment.body);
+        var bodyText = findAndReplaceUsername(comment.body);
+        bodyText = marked(bodyText);
         var body = {__html: bodyText};
         return(
           <li key={comment.id} className="comment group">

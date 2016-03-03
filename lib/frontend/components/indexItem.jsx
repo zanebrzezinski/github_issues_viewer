@@ -1,7 +1,6 @@
 var React = require('react');
 var marked = require('marked');
-var findUsername = require('../util/regex_util');
-
+var findAndReplaceUsername = require('../util/regex_util');
 var IndexItem = React.createClass ({
 
   clickHandler: function() {
@@ -9,13 +8,22 @@ var IndexItem = React.createClass ({
   },
 
   calculatePreview: function(text) {
-    var preview = text.slice(0, 140);
-    if (preview[preview.length - 1] === " ") {
-      return preview;
+    var preview;
+    if (!this.props.modal) {
+      if (text.length > 140) {
+        preview = text.slice(0, 140);
+        if (preview[preview.length - 1] === " ") {
+          return preview;
+        } else {
+          var arr = preview.split(" ");
+          preview = arr.slice(0, arr.length - 2).join(" ");
+          preview += "...";
+        }
+      } else {
+        preview = text;
+      }
     } else {
-      var arr = preview.split(" ");
-      preview = arr.slice(0, arr.length - 2).join(" ");
-      preview += "...";
+      preview = text;
     }
     return preview;
   },
@@ -45,16 +53,9 @@ var IndexItem = React.createClass ({
       status = <i className="fa fa-check-circle-o closed-issue">Closed</i>;
     }
 
-    var previewText;
-    if (!this.props.modal) {
-      if (issue.body.length > 140) {
-        previewText = this.calculatePreview(issue.body);
-      } else {
-        previewText = issue.body;
-      }
-    } else {
-      previewText = issue.body;
-    }
+    var previewText = this.calculatePreview(issue.body);
+    previewText = findAndReplaceUsername(previewText);
+
     var preview = {__html: marked(previewText)};
 
     var title = {__html: marked(issue.title)};
