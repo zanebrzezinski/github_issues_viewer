@@ -7,6 +7,18 @@ var IndexItem = React.createClass ({
     this.props.clickHandler(this.props.issue);
   },
 
+  calculatePreview: function(text) {
+    var preview = text.slice(0, 140);
+    if (preview[preview.length - 1] === " ") {
+      return preview;
+    } else {
+      var arr = preview.split(" ");
+      preview = arr.slice(0, arr.length - 2).join(" ");
+      preview += "...";
+    }
+    return preview;
+  },
+
   render: function () {
     var issue = this.props.issue;
     var labels = issue.labels.map(function(label) {
@@ -35,9 +47,9 @@ var IndexItem = React.createClass ({
     var previewText;
     if (!this.props.modal) {
       if (issue.body.length > 140) {
-        previewText = issue.body.slice(0,140) + "...";
+        previewText = this.calculatePreview(issue.body);
       } else {
-        previewText = issue.body.slice(0,140);
+        previewText = issue.body;
       }
     } else {
       previewText = issue.body;
