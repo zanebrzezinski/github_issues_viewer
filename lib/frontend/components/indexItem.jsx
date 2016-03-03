@@ -56,6 +56,8 @@ var IndexItem = React.createClass ({
     }
     var preview = {__html: marked(previewText)};
 
+    var title = {__html: marked(issue.title)};
+
 
     if (!this.props.modal) {
       return(
@@ -72,8 +74,8 @@ var IndexItem = React.createClass ({
                 </div>
               </a>
             </div>
-            <li key="title" className="title" onClick={this.clickHandler}>
-              {issue.title}</li>
+            <li key="title" className="title" onClick={this.clickHandler}
+              dangerouslySetInnerHTML={title}></li>
             <ul key="labels">{labels}</ul>
             <li dangerouslySetInnerHTML={preview} className="preview"></li>
             <li key="numComments" className="numComments"
