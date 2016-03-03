@@ -10,7 +10,7 @@ var IndexItem = React.createClass ({
   calculatePreview: function(text) {
     var preview;
     if (!this.props.modal) {
-      if (text.length > 140) {
+      if (text && text.length > 140) {
         preview = text.slice(0, 140);
         if (preview[preview.length - 1] === " ") {
           return preview;
@@ -56,7 +56,12 @@ var IndexItem = React.createClass ({
     var previewText = this.calculatePreview(issue.body);
     previewText = findAndReplaceUsername(previewText);
 
-    var preview = {__html: marked(previewText)};
+    var preview;
+    if (issue.body) {
+      preview = {__html: marked(previewText)};
+    } else {
+      preview = {__html: "<div/>"};
+    }
 
     var title = {__html: marked(issue.title)};
 
