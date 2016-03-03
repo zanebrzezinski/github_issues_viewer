@@ -43,6 +43,7 @@ a {
 
 code {
   background-color: #eee;
+  word-break: break-word;
 }
 
 h1 {
