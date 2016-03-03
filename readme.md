@@ -3,7 +3,7 @@
 
 To run, clone this repo and run `npm install` and open 'index.html' in browser.
 
-or view live [here](https://issuesviewer.zanebrzezinski.com)
+Or view live [here](https://issuesviewer.zanebrzezinski.com)
 
 Because this is a frontend only project, there is currently no UI to authenticate
 the API requests to github.  The access token may be hard-coded in
