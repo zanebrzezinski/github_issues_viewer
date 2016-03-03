@@ -26,13 +26,13 @@ var IndexItem = React.createClass ({
         return (
           <li key={label.name} className="label"
           style={{color: "#000000"}}
-          ><a href={label.url}>{label.name}</a></li>
+          >{label.name}</li>
         );
       } else {
         return (
           <li key={label.name} className="label"
           style={{backgroundColor: "#" + label.color}}
-          ><a href={label.url}>{label.name}</a></li>
+          >{label.name}</li>
         );
       }
     });
