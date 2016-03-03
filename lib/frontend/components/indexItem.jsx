@@ -1,5 +1,6 @@
 var React = require('react');
 var marked = require('marked');
+var findUsername = require('../util/regex_util');
 
 var IndexItem = React.createClass ({
 
@@ -77,7 +78,7 @@ var IndexItem = React.createClass ({
             <div className="issue-body">
               <li key="title" className="title" onClick={this.clickHandler}
                 dangerouslySetInnerHTML={title}></li>
-              <ul key="labels">{labels}</ul>
+              <ul key="labels" className="labels">{labels}</ul>
               <li dangerouslySetInnerHTML={preview} className="preview"></li>
             </div>
             <li key="numComments" className="numComments"
@@ -93,7 +94,7 @@ var IndexItem = React.createClass ({
           <ul key={issue.id} className="issue group">
             <div className="issue-info">
               <div key="status" className="status">{status}</div>
-              <div key="id" className="id" onClick={this.clickHandler}>
+              <div key="id" className="id no-hover">
                 {"#"+issue.id}</div>
               <a href={"https://github.com/" + issue.user.login}>
                 <img key="avatar" className="avatar" src={issue.user.avatar_url}/>
@@ -103,9 +104,9 @@ var IndexItem = React.createClass ({
               </a>
             </div>
             <div className="issue-body">
-              <li key="title" className="title" onClick={this.clickHandler}>
+              <li key="title" className="title no-hover">
                 {issue.title}</li>
-              <ul key="labels">{labels}</ul>
+              <ul key="labels" className="labels">{labels}</ul>
               <li dangerouslySetInnerHTML={preview} className="preview"></li>
             </div>
           </ul>

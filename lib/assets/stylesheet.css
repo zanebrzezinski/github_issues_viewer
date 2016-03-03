@@ -53,11 +53,13 @@ code {
 h1 {
   text-align: center;
   font-size: 64px;
+  margin: 20px;
 }
 
 h2 {
   text-align: center;
   font-size: 32px;
+  margin: 20px;
 }
 
 .group:after {
@@ -99,6 +101,7 @@ h2 {
   .pages {
     width: 800px;
     margin: 5px auto;
+    text-align: center;
   }
 
   .page {
@@ -124,7 +127,7 @@ h2 {
 /* --- ISSUE INFO ---*/
 
   .issue-info {
-    position: absolute;
+    float: left;
     width: 150px;
     height: 100%
   }
@@ -132,17 +135,17 @@ h2 {
     width: 50px;
     height: auto;
     display: inline;
-    margin: 5px;
+    margin: 5px 5px 5px 15px;
   }
 
   .open-issue {
     color: green;
-    margin: 5px;
+    margin: 5px 5px 5px 15px;
   }
 
   .closed-issue {
     color: red;
-    margin: 5px;
+    margin: 5px 5px 5px 15px;
   }
 
   .id {
@@ -159,15 +162,15 @@ h2 {
 
 /* --- ISSUE CONTENT --- */
 
-  .issue-body {
-    margin-left: 150px;
-  }
-
   .title {
     font-size: 16px;
     font-weight: bold;
     padding-top: 10px;
     cursor: pointer;
+  }
+
+  .labels {
+    margin-bottom: 10px;
   }
 
   .label {
@@ -177,6 +180,10 @@ h2 {
     border-radius: 3px;
     background-color: #aaa;
     color: #FFF;
+  }
+
+  .preview {
+    margin: 10px 20px 10px 150px
   }
 
   .numComments {
@@ -230,6 +237,7 @@ h2 {
 
   .no-hover {
     border: none;
+    cursor: default;
   }
 
   .no-hover:hover {
@@ -246,5 +254,5 @@ h2 {
 
   .body {
     display: block;
-    margin: 30px;
+    margin: 10px 20px 10px 150px;
   }
