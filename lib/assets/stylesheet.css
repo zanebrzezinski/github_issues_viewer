@@ -51,7 +51,6 @@ p {
 
 code {
   background-color: #eee;
-  word-break: break-word;
 }
 
 h1 {
@@ -216,6 +215,7 @@ h2 {
     z-index: 50;
     top: 0;
     cursor: pointer;
+    overflow-x: scroll;
   }
 
   .modal {

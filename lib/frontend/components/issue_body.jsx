@@ -36,10 +36,12 @@ var IssueBody = React.createClass({
     previewText = findAndReplaceUsername(previewText);
 
     var preview;
-    if (issue.body && !this.props.modal) {
-      preview = {__html: marked(previewText)};
+
+    if (issue.body && this.props.modal) {
+      dangerouslySetInnerHTML = {__html: marked(previewText)};
+      preview = <li dangerouslySetInnerHTML={dangerouslySetInnerHTML} className="preview"></li>;
     } else {
-      preview = {__html: "<div/>"};
+      preview = <li className="preview">{previewText}</li>;
     }
 
     var title = {__html: marked(issue.title)};
@@ -64,7 +66,7 @@ var IssueBody = React.createClass({
         <li key="title" className="title hover" onClick={this.clickHandler}
           dangerouslySetInnerHTML={title}></li>
         <ul key="labels" className="labels">{labels}</ul>
-        <li dangerouslySetInnerHTML={preview} className="preview"></li>
+        {preview}
       </div>
     );
   }
