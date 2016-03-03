@@ -41,6 +41,10 @@ a {
   color: blue;
 }
 
+a:hover {
+  color: red;
+}
+
 p {
   margin-bottom: 15px;
 }
@@ -193,12 +197,12 @@ h2 {
     cursor: pointer;
   }
 
-  .fa-comment-o {
-    margin: 5px;
+  .numComments > span:hover {
+    color: red;
   }
 
-  .numComments:hover {
-    color: blue;
+  .fa-comment-o {
+    margin: 5px;
   }
 
 /* --- ISSUE INFO ---*/
@@ -238,6 +242,10 @@ h2 {
   .no-hover {
     border: none;
     cursor: default;
+  }
+
+  .hover:hover {
+    color: red;
   }
 
   .no-hover:hover {

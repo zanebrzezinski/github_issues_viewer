@@ -8,14 +8,15 @@ var IssueModal = require('./issue_modal');
 var Index = React.createClass({
 
   getInitialState: function() {
-    return ({issues: null, page: 1, lastPage: null, modal: null});
+    return ({issues: null, page: 1, lastPage: null, modal: null, loading: true});
   },
 
   apiCallback: function(currentPage, lastPage) {
     if (this.state.lastPage) {
-      this.setState({page: currentPage});
+      this.setState({page: currentPage, loading: false});
+      window.scroll(0, 0);
     } else {
-      this.setState({page: currentPage, lastPage: parseInt(lastPage)});
+      this.setState({page: currentPage, lastPage: parseInt(lastPage), loading: false});
     }
   },
 
@@ -30,16 +31,19 @@ var Index = React.createClass({
   prevPage: function() {
     if (this.state.page > 1) {
       issuesUtil.fetchIssues(this.state.page - 1, this.apiCallback);
+      this.setState({loading: true});
     }
   },
 
   firstPage: function() {
     issuesUtil.fetchIssues(1, this.apiCallback);
+    this.setState({loading: true});
   },
 
   lastPage: function() {
     if (this.state.lastPage) {
       issuesUtil.fetchIssues(this.state.lastPage, this.apiCallback);
+      this.setState({loading: true});
     }
   },
 
@@ -49,6 +53,7 @@ var Index = React.createClass({
         this.state.page + 1,
         this.apiCallback
       );
+      this.setState({loading: true});
     }
   },
 
@@ -57,6 +62,7 @@ var Index = React.createClass({
       parseInt(e.currentTarget.id),
       this.apiCallback
     );
+    this.setState({loading: true});
   },
 
   componentDidMount: function() {
@@ -85,7 +91,7 @@ var Index = React.createClass({
     var pages = [];
     if (this.state.lastPage) {
 
-      if (this.state.page > 1) {      
+      if (this.state.page > 1) {
         pages.push(
           <li onClick={this.firstPage} key="first" className="page">&#60;&#60;</li>
         );
@@ -135,7 +141,13 @@ var Index = React.createClass({
       </div>
     );
 
-    if (this.state.modal) {
+    if (this.state.loading) {
+      return (
+        <div className="issues">
+          <h1>LOADING</h1>
+        </div>
+      );
+    } else if (this.state.modal) {
       return(
         <div>
           <IssueModal hideModal={this.hideModal} issue={this.state.modal}/>

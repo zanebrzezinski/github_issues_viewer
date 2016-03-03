@@ -72,24 +72,24 @@ var IndexItem = React.createClass ({
           <ul key={issue.id} className="issue group">
             <div className="issue-info">
               <div key="status" className="status">{status}</div>
-              <div key="id" className="id" onClick={this.clickHandler}>
+              <div key="id" className="id hover" onClick={this.clickHandler}>
                 {"#"+issue.id}</div>
               <a href={"https://github.com/" + issue.user.login}>
                 <img key="avatar" className="avatar" src={issue.user.avatar_url}/>
-                <div key="username" className="username">
+                <div key="username" className="username hover">
                   {"@" + issue.user.login}
                 </div>
               </a>
             </div>
             <div className="issue-body">
-              <li key="title" className="title" onClick={this.clickHandler}
+              <li key="title" className="title hover" onClick={this.clickHandler}
                 dangerouslySetInnerHTML={title}></li>
               <ul key="labels" className="labels">{labels}</ul>
               <li dangerouslySetInnerHTML={preview} className="preview"></li>
             </div>
-            <li key="numComments" className="numComments"
+            <li key="numComments" className="numComments hover"
               onClick={this.clickHandler}>
-              <i className="fa fa-comment-o"></i> {issue.comments + " comments"}
+              <i className="fa fa-comment-o hover"></i> {issue.comments + " comments"}
             </li>
           </ul>
         </li>

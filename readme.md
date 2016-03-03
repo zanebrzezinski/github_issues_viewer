@@ -32,6 +32,8 @@ or view live [here](https://issuesviewer.zanebrzezinski.com)
   just need to grab the contents of the field and configure the ajax request url accordingly.
   * "Time Ago" stamps for comment and issue submissions.  Could have used a library, but would
   rather write the code out myself as it's pretty simple to accomplish.
+  * History.  Would involve refactoring index component to fetch page by taking pagenum from
+  history hash, which would allow using browser history to navigate through visited pages.
   * Styling.  Always styling.  In spending so much time looking at githubs issues pages,
   I've somewhat aped their droll styling.  Needs some more spice at the moment.
   * Errors.  Some are implemented, but one can never underestimate the end-user's
