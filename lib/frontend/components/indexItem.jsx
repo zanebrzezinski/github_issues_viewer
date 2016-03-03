@@ -6,6 +6,10 @@ var IssueBody = require('./issue_body');
 
 var IndexItem = React.createClass ({
 
+  clickHandler: function() {
+    this.props.clickHandler(this.props.issue);
+  },
+
   render: function () {
     var issue = this.props.issue;
 
@@ -17,7 +21,7 @@ var IndexItem = React.createClass ({
             clickHandler={this.props.clickHandler} modal={this.props.modal}/>
           <li key="numComments" className="numComments hover"
             onClick={this.clickHandler}>
-            <i className="fa fa-comment-o hover"></i> {issue.comments + " comments"}
+            <i className="fa fa-comment-o hover"> {issue.comments + " comments"}</i>
           </li>
         </ul>
       </li>

@@ -139,6 +139,7 @@ h2 {
     height: auto;
     display: inline;
     margin: 5px 5px 5px 15px;
+    border-radius: 5px;
   }
 
   .open-issue {
@@ -215,7 +216,6 @@ h2 {
     z-index: 50;
     top: 0;
     cursor: pointer;
-    overflow-x: scroll;
   }
 
   .modal {

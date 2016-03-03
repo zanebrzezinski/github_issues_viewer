@@ -22,31 +22,11 @@ var IssueBody = React.createClass({
     } else {
       preview = text;
     }
-    return preview;
+    return findAndReplaceUsername(preview);
   },
 
-  clickHandler: function() {
-    this.props.clickHandler(this.props.issue);
-  },
-
-  render: function() {
-    var issue = this.props.issue;
-
-    var previewText = this.calculatePreview(issue.body);
-    previewText = findAndReplaceUsername(previewText);
-
-    var preview;
-
-    if (issue.body && this.props.modal) {
-      dangerouslySetInnerHTML = {__html: marked(previewText)};
-      preview = <li dangerouslySetInnerHTML={dangerouslySetInnerHTML} className="preview"></li>;
-    } else {
-      preview = <li className="preview">{previewText}</li>;
-    }
-
-    var title = {__html: marked(issue.title)};
-
-    var labels = issue.labels.map(function(label) {
+  calculateLabels: function() {
+    var labels = this.props.issue.labels.map(function(label) {
       if (label.color === "FFFFFF") {
         return (
           <li key={label.name} className="label"
@@ -61,6 +41,31 @@ var IssueBody = React.createClass({
         );
       }
     });
+
+    return labels;
+  },
+
+  clickHandler: function() {
+    this.props.clickHandler(this.props.issue);
+  },
+
+  render: function() {
+    var issue = this.props.issue;
+
+    var previewText = this.calculatePreview(issue.body);
+
+    var preview;
+    if (issue.body) {
+      dangerouslySetInnerHTML = {__html: marked(previewText)};
+      preview = <li dangerouslySetInnerHTML={dangerouslySetInnerHTML} className="preview"></li>;
+    } else {
+      preview = <li/>;
+    }
+
+    var title = {__html: marked(issue.title)};
+
+    var labels = this.calculateLabels();
+
     return(
       <div className="issue-body">
         <li key="title" className="title hover" onClick={this.clickHandler}
