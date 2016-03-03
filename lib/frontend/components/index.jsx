@@ -33,6 +33,16 @@ var Index = React.createClass({
     }
   },
 
+  firstPage: function() {
+    issuesUtil.fetchIssues(1, this.apiCallback);
+  },
+
+  lastPage: function() {
+    if (this.state.lastPage) {
+      issuesUtil.fetchIssues(this.state.lastPage, this.apiCallback);
+    }
+  },
+
   nextPage: function() {
     if (this.state.page === null || this.state.page < this.state.lastPage) {
       issuesUtil.fetchIssues(
@@ -75,9 +85,12 @@ var Index = React.createClass({
     var pages = [];
     if (this.state.lastPage) {
 
-      if (this.state.page > 1) {
+      if (this.state.page > 1) {      
         pages.push(
-          <li onClick={this.prevPage} key="prev" className="page iterator">&#60;</li>
+          <li onClick={this.firstPage} key="first" className="page">&#60;&#60;</li>
+        );
+        pages.push(
+          <li onClick={this.prevPage} key="prev" className="page">&#60;</li>
         );
       }
 
@@ -103,7 +116,10 @@ var Index = React.createClass({
 
       if (this.state.page < this.state.lastPage) {
         pages.push(
-          <li onClick={this.nextPage} key="next" className="page iterator">&#62;</li>
+          <li onClick={this.nextPage} key="next" className="page">&#62;</li>
+        );
+        pages.push(
+          <li onClick={this.lastPage} key="last" className="page">&#62;&#62;</li>
         );
       }
     }
