@@ -28,7 +28,8 @@ the API requests to github.  The access token may be hard-coded in
 
 or in the comments request like so:
 
-```fetchComments: function(url, cb) {
+```
+fetchComments: function(url, cb) {
   $.ajax({
     type: "GET",
     url: url,
@@ -39,7 +40,7 @@ or in the comments request like so:
     }
   });
 }
-  ```
+```
 
 # Features
  * Uses Github API to grab issues from npm repo.
