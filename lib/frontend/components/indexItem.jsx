@@ -74,10 +74,12 @@ var IndexItem = React.createClass ({
                 </div>
               </a>
             </div>
-            <li key="title" className="title" onClick={this.clickHandler}
-              dangerouslySetInnerHTML={title}></li>
-            <ul key="labels">{labels}</ul>
-            <li dangerouslySetInnerHTML={preview} className="preview"></li>
+            <div className="issue-body">
+              <li key="title" className="title" onClick={this.clickHandler}
+                dangerouslySetInnerHTML={title}></li>
+              <ul key="labels">{labels}</ul>
+              <li dangerouslySetInnerHTML={preview} className="preview"></li>
+            </div>
             <li key="numComments" className="numComments"
               onClick={this.clickHandler}>
               <i className="fa fa-comment-o"></i> {issue.comments + " comments"}
@@ -100,10 +102,12 @@ var IndexItem = React.createClass ({
                 </div>
               </a>
             </div>
-            <li key="title" className="title" onClick={this.clickHandler}>
-              {issue.title}</li>
-            <ul key="labels">{labels}</ul>
-            <li dangerouslySetInnerHTML={preview} className="preview"></li>
+            <div className="issue-body">
+              <li key="title" className="title" onClick={this.clickHandler}>
+                {issue.title}</li>
+              <ul key="labels">{labels}</ul>
+              <li dangerouslySetInnerHTML={preview} className="preview"></li>
+            </div>
           </ul>
         </li>
       );

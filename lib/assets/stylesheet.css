@@ -20,7 +20,7 @@ button, article, footer, small {
 body {
   background: #FFF;
   box-sizing: content-box;
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   line-height: 1.1666666666;
   color: #000;
@@ -39,6 +39,10 @@ img {
 
 a {
   color: blue;
+}
+
+p {
+  margin-bottom: 15px;
 }
 
 code {
@@ -79,7 +83,7 @@ h2 {
 
   .issue-block {
     position: relative;
-    padding: 10px;
+    padding: 20px;
     border-bottom: 1px solid #eee;
   }
 
@@ -120,8 +124,9 @@ h2 {
 /* --- ISSUE INFO ---*/
 
   .issue-info {
-    float: left;
-    width: 125px;
+    position: absolute;
+    width: 150px;
+    height: 100%
   }
   .avatar {
     width: 50px;
@@ -154,10 +159,14 @@ h2 {
 
 /* --- ISSUE CONTENT --- */
 
+  .issue-body {
+    margin-left: 150px;
+  }
+
   .title {
     font-size: 16px;
     font-weight: bold;
-    padding-top: 15px;
+    padding-top: 10px;
     cursor: pointer;
   }
 
@@ -168,10 +177,6 @@ h2 {
     border-radius: 3px;
     background-color: #aaa;
     color: #FFF;
-  }
-
-  .preview {
-    margin: 10px 40px;
   }
 
   .numComments {
@@ -241,4 +246,5 @@ h2 {
 
   .body {
     display: block;
+    margin: 30px;
   }
