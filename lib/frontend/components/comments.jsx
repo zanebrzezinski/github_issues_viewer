@@ -1,6 +1,7 @@
 var React = require('react');
 var CommentsStore = require('../stores/comments_store');
 var issuesUtil = require('../util/issues_util.js');
+var marked = require('marked');
 
 var Comments = React.createClass({
 
@@ -13,13 +14,42 @@ var Comments = React.createClass({
     issuesUtil.fetchComments(this.props.url);
   },
 
+  componentWillUnmount: function() {
+    this.token.remove();
+  },
+
   _onChange: function() {
-    debugger
     this.setState({comments: CommentsStore.comments()});
   },
 
   render: function() {
-    return(<div/>);
+
+    var comments;
+    if (this.state.comments) {
+      comments = this.state.comments.map(function(comment) {
+        var bodyText = marked(comment.body);
+        var body = {__html: bodyText};
+        return(
+          <li key={comment.id} className="comment group">
+            <div className="issue-info">
+              <a href={"https://github.com/" + comment.user.login}>
+                <img key="avatar" className="avatar" src={comment.user.avatar_url}/>
+                <div key="username" className="username">
+                  {"@" + comment.user.login}
+                </div>
+              </a>
+            </div>
+            <div key="comment" className="body" dangerouslySetInnerHTML={body}></div>
+          </li>
+        );
+      });
+    }
+
+    return(
+      <ul>
+        {comments}
+      </ul>
+    );
   }
 
 });

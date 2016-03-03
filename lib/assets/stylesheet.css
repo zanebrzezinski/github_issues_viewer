@@ -43,7 +43,16 @@ a {
 
 code {
   background-color: #eee;
-  padding: 2px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 64px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 32px;
 }
 
 .group:after {
@@ -51,6 +60,8 @@ code {
   display: block;
   content: "";
 }
+
+
 
 /* --- INDEX --- */
 
@@ -198,11 +209,13 @@ code {
     position: fixed;
     left: calc(50% - 400px);
     top: 40px;
+    max-height: 800px;
     width: 800px;
     margin: auto;
     background-color: white;
     border-radius: 5px;
     z-index: 150;
+    overflow-y: auto;
   }
 
   .modal-issue {
@@ -220,4 +233,15 @@ code {
   .no-hover:hover {
     background-color: inherit;
     border-radius: 5px;
+  }
+
+/* --- COMMENTS ---*/
+
+  .comment {
+    padding: 10px;
+    border-top: 1px solid #eee;
+  }
+
+  .body {
+    display: block;
   }

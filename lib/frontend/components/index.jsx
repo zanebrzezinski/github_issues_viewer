@@ -54,6 +54,10 @@ var Index = React.createClass({
     issuesUtil.fetchIssues(this.state.page, this.apiCallback);
   },
 
+  componentWillUnmount: function() {
+    this.token.remove();
+  },
+
   _onChange: function() {
     this.setState({issues: IssuesStore.issues()});
   },
