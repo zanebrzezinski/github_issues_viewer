@@ -7,12 +7,16 @@ var findAndReplaceUsername = require('../util/regex_util');
 var Comments = React.createClass({
 
   getInitialState: function() {
-    return({comments: null});
+    return({comments: null, error: null});
   },
 
   componentDidMount: function() {
     this.token = CommentsStore.addListener(this._onChange);
-    issuesUtil.fetchComments(this.props.url);
+    issuesUtil.fetchComments(this.props.url, this.errorCallback);
+  },
+
+  errorCallback: function() {
+    this.setState({error: "Oh no, something seems to have gone wrong. You've probably made too many unauthenticated requests. See the readme for details."});
   },
 
   componentWillUnmount: function() {
@@ -24,6 +28,10 @@ var Comments = React.createClass({
   },
 
   render: function() {
+
+    if (this.state.error) {
+      return (<h2>{this.state.error}</h2>);
+    }
 
     var comments;
     if (this.state.comments) {

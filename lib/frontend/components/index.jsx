@@ -8,7 +8,8 @@ var IssueModal = require('./issue_modal');
 var Index = React.createClass({
 
   getInitialState: function() {
-    return ({issues: null, page: 1, lastPage: null, modal: null, loading: true});
+    return ({issues: null, page: 1, lastPage: null, modal: null,
+      loading: true, error: null});
   },
 
   apiCallback: function(currentPage, lastPage) {
@@ -18,6 +19,10 @@ var Index = React.createClass({
     } else {
       this.setState({page: currentPage, lastPage: parseInt(lastPage), loading: false});
     }
+  },
+
+  errorCallback: function() {
+    this.setState({loading: false, error: "Oh no, something seems to have gone wrong. You've probably made too many unauthenticated requests. See the readme for details."});
   },
 
   showModal: function(issue) {
@@ -30,19 +35,19 @@ var Index = React.createClass({
 
   prevPage: function() {
     if (this.state.page > 1) {
-      issuesUtil.fetchIssues(this.state.page - 1, this.apiCallback);
+      issuesUtil.fetchIssues(this.state.page - 1, this.apiCallback, this.errorCallback);
       this.setState({loading: true});
     }
   },
 
   firstPage: function() {
-    issuesUtil.fetchIssues(1, this.apiCallback);
+    issuesUtil.fetchIssues(1, this.apiCallback, this.errorCallback);
     this.setState({loading: true});
   },
 
   lastPage: function() {
     if (this.state.lastPage) {
-      issuesUtil.fetchIssues(this.state.lastPage, this.apiCallback);
+      issuesUtil.fetchIssues(this.state.lastPage, this.apiCallback, this.errorCallback);
       this.setState({loading: true});
     }
   },
@@ -51,7 +56,8 @@ var Index = React.createClass({
     if (this.state.page === null || this.state.page < this.state.lastPage) {
       issuesUtil.fetchIssues(
         this.state.page + 1,
-        this.apiCallback
+        this.apiCallback,
+        this.errorCallback
       );
       this.setState({loading: true});
     }
@@ -60,14 +66,15 @@ var Index = React.createClass({
   jumpToPage: function(e) {
     issuesUtil.fetchIssues(
       parseInt(e.currentTarget.id),
-      this.apiCallback
+      this.apiCallback,
+      this.errorCallback
     );
     this.setState({loading: true});
   },
 
   componentDidMount: function() {
     this.token = IssuesStore.addListener(this._onChange);
-    issuesUtil.fetchIssues(this.state.page, this.apiCallback);
+    issuesUtil.fetchIssues(this.state.page, this.apiCallback, this.errorCallback);
   },
 
   componentWillUnmount: function() {
@@ -145,6 +152,12 @@ var Index = React.createClass({
       return (
         <div className="issues">
           <h1>LOADING</h1>
+        </div>
+      );
+    } else if (this.state.error) {
+      return (
+        <div className="issues">
+          <h2 className="error">{this.state.error}</h2>
         </div>
       );
     } else if (this.state.modal) {
