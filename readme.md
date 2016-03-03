@@ -16,9 +16,20 @@ or view live [here](issuesviewer.zanebrzezinski.com)
  * Renders markdown using [chjj's marked parser](https://github.com/chjj/marked)
  * Lists labels for each issue, with color of label determined by hex code sent up
  with Api.
- ⋅⋅* White labels are rendered slightly darker, as label text is set to white and is
+ 
+ ⋅⋅⋅* White labels are rendered slightly darker, as label text is set to white and is
  illegible otherwise.
+ * Uses regex to parse out @mentions and link to github user profile.
 
 #To Do
   * Markdown parsing on preview text is imperfect.  When the 140 character limit ends
-  in the middle
+  in the middle of a code block, the backtick(s) will remain and will not be rendered as
+  code block.
+  * Back end for oAuth.  Github limits unauthenticated API requests to 60 per hour.
+  I got around this in testing by hard coding a personal access token, but in production
+  the app would need to keep track of a logged in user and use their access token to
+  authenticate the request.  A rather easy fix, but felt out of the scope of this project.
+  * Input field to look at issues for other repos.  Again, rather trivial to implement,
+  just need to grab the contents of the field and configure the ajax request url accordingly.
+  * Styling.  Always styling.  In spending so much time looking at githubs issues pages,
+  I've somewhat aped their droll styling.  Needs some more spice at the moment.
