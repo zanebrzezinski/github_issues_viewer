@@ -3,7 +3,7 @@
 
 To run, clone this repo and run `npm install` and open 'index.html' in browser.
 
-Or view live [here](https://issuesviewer.zanebrzezinski.com)
+Or view live [here](issuesviewer.zanebrzezinski.com)
 
 Because this is a frontend only project, there is currently no UI to authenticate
 the API requests to github.  The access token may be hard-coded in
@@ -58,21 +58,7 @@ fetchComments: function(url, cb) {
  * Uses regex to parse out @mentions and link to github user profile.
 
 #To Do
-  * Markdown parsing on preview text is imperfect.  When the 140 character limit ends
-  in the middle of a code block, the backtick(s) will remain and will not be rendered as
-  code block.
-  * Back end for oAuth.  Github limits unauthenticated API requests to 60 per hour.
-  I got around this in testing by hard coding a personal access token, but in production
-  the app would need to keep track of a logged in user and use their access token to
-  authenticate the request.  A rather easy fix, but felt out of the scope of this project.
-  * Input field to look at issues for other repos.  Again, rather trivial to implement,
-  just need to grab the contents of the field and configure the ajax request url accordingly.
-  * "Time Ago" stamps for comment and issue submissions.  Could have used a library, but would
-  rather write the code out myself as it's pretty simple to accomplish.
+  * Markdown parsing on preview text was imperfect with occasionally disastrous results and was removed.
+  * No back end means no oAuth means limited Api Requests per hour.
   * History.  Would involve refactoring index component to fetch page by taking pagenum from
   history hash, which would allow using browser history to navigate through visited pages.
-  * Styling.  Always styling.  In spending so much time looking at githubs issues pages,
-  I've somewhat aped their droll styling.  Needs some more spice at the moment.
-  * Errors.  Some are implemented, but one can never underestimate the end-user's
-  ability to screw me up.  Of course, as more features are added, so too is the possibility
-  for more errors.
