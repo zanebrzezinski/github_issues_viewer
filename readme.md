@@ -7,7 +7,7 @@ or view live [here](https://issuesviewer.zanebrzezinski.com)
 
 Because this is a frontend only project, there is currently no UI to authenticate
 the API requests to github.  The access token may be hard-coded in
-`lib/frontend/util/issues_util` by adding a `data` key to the ajax request as follows
+`lib/frontend/util/issues_util` by adding a `data` key to the ajax request as follows:
 
 ```$.ajax({
   type: "GET",
@@ -26,7 +26,7 @@ the API requests to github.  The access token may be hard-coded in
   },
   ```
 
-or in the comments request like so
+or in the comments request like so:
 
 ```fetchComments: function(url, cb) {
   $.ajax({
@@ -39,7 +39,7 @@ or in the comments request like so
     }
   });
 }
-```
+  ```
 
 # Features
  * Uses Github API to grab issues from npm repo.
