@@ -56,7 +56,7 @@ var Comments = React.createClass({
     }
 
     return(
-      <ul>
+      <ul className="comments">
         {comments}
       </ul>
     );

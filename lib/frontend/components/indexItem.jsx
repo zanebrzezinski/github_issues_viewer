@@ -13,16 +13,23 @@ var IndexItem = React.createClass ({
   render: function () {
     var issue = this.props.issue;
 
+    var numComments;
+    if (!this.props.modal) {
+      numComments = <li key="numComments" className="numComments hover"
+        onClick={this.clickHandler}>
+        <i className="fa fa-comment-o hover"> {issue.comments + " comments"}</i>
+      </li>;
+    } else {
+      numComments = <li/>;
+    }
+
     return(
       <li className="issue-block">
         <ul key={issue.id} className="issue group">
           <IssueInfo issue={this.props.issue} clickHandler={this.props.clickHandler}/>
           <IssueBody issue={this.props.issue}
             clickHandler={this.props.clickHandler} modal={this.props.modal}/>
-          <li key="numComments" className="numComments hover"
-            onClick={this.clickHandler}>
-            <i className="fa fa-comment-o hover"> {issue.comments + " comments"}</i>
-          </li>
+          {numComments}
         </ul>
       </li>
     );

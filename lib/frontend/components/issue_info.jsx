@@ -1,6 +1,11 @@
 var React = require('react');
 
 var IssueInfo = React.createClass({
+
+  clickHandler: function() {
+    this.props.clickHandler(this.props.issue);
+  },
+
   render: function() {
 
     var issue = this.props.issue;
@@ -12,10 +17,20 @@ var IssueInfo = React.createClass({
       status = <i className="fa fa-check-circle-o closed-issue">Closed</i>;
     }
 
+    var clickHandler;
+    var hover;
+    if (this.props.clickHandler) {
+      clickHandler = this.clickHandler;
+      hover = "hover";
+    } else {
+      clickHandler = null;
+      hover = "no-hover";
+    }
+
     return(
       <div className="issue-info">
         <div key="status" className="status">{status}</div>
-        <div key="id" className="id hover" onClick={this.props.clickHandler}>
+        <div key="id" className={"id " + hover} onClick={clickHandler}>
           {"#"+issue.id}</div>
         <a href={"https://github.com/" + issue.user.login}>
           <img key="avatar" className="avatar" src={issue.user.avatar_url}/>

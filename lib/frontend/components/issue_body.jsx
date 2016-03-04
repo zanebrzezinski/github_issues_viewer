@@ -66,9 +66,19 @@ var IssueBody = React.createClass({
 
     var labels = this.calculateLabels();
 
+    var clickHandler;
+    var hover;
+    if (this.props.clickHandler) {
+      clickHandler = this.clickHandler;
+      hover = "hover";
+    } else {
+      clickHandler = null;
+      hover = "no-hover";
+    }
+
     return(
       <div className="issue-body">
-        <li key="title" className="title hover" onClick={this.clickHandler}
+        <li key="title" className={"title " + hover} onClick={clickHandler}
           dangerouslySetInnerHTML={title}></li>
         <ul key="labels" className="labels">{labels}</ul>
         {preview}

@@ -85,16 +85,7 @@ var Index = React.createClass({
     this.setState({issues: IssuesStore.issues()});
   },
 
-  render: function() {
-    var issues;
-    if (this.state.issues) {
-      issues = this.state.issues.map(function(issue) {
-        return (
-          <IndexItem key={issue.id} issue={issue} clickHandler={this.showModal}/>
-        );
-      }.bind(this));
-    }
-
+  createPageNums: function() {
     var pages = [];
     if (this.state.lastPage) {
 
@@ -108,15 +99,13 @@ var Index = React.createClass({
       }
 
       var i;
-      if (i < 5) {
-        i = 0;
-      } else if (this.state.page + 15 >= this.state.lastPage) {
-        i = this.state.lastPage - 15;
+      if (this.state.page + 10 >= this.state.lastPage) {
+        i = this.state.lastPage - 10;
       } else {
         i = this.state.page;
       }
 
-      var max = i + 15;
+      var max = i + 10;
       for (i; i <= max; i++) {
         if (i === this.state.page) {
           pages.push(<li className="current page" onClick={this.jumpToPage}
@@ -136,6 +125,21 @@ var Index = React.createClass({
         );
       }
     }
+    return pages;
+  },
+
+  render: function() {
+    var issues;
+    if (this.state.issues) {
+      issues = this.state.issues.map(function(issue) {
+        return (
+          <IndexItem key={issue.id} issue={issue} clickHandler={this.showModal}/>
+        );
+      }.bind(this));
+    }
+
+    var pages = this.createPageNums();
+
     content = (
       <div>
         <div className="page-list">
