@@ -63,9 +63,14 @@ var IssueBody = React.createClass({
     }
 
     var previewText = this.calculatePreview(issue.body);
-
     var preview;
-    if (issue.body && this.props.modal && issue.id !== 127528953) {
+
+    /* the weird number "issue.id" evaluated in the next two functions is a weird
+    edge case that blows up the dangerouslySetInnerHTML.  I literally checked every page
+    of npm issues and this seems to be the only one that blows up the app, so I coded around it.
+    I'm sure there is a better way to do this. */
+
+    if (issue.body && issue.id !== 127528953) {
       dangerouslySetInnerHTML = {__html: marked(previewText)};
       preview = <div dangerouslySetInnerHTML={dangerouslySetInnerHTML} className="preview"></div>;
     } else {
@@ -74,9 +79,10 @@ var IssueBody = React.createClass({
 
     var titleText;
     var title;
-    if (this.props.modal && issue.id !== 127528953) {
+    if (issue.id !== 127528953) {
       titleText = {__html: marked(issue.title)};
-      title = <div dangerouslySetInnerHTML={titleText} className={"title " + hover}></div>;
+      title = <div dangerouslySetInnerHTML={titleText} onClick={clickHandler}
+        className={"title " + hover}></div>;
     } else {
       title = <div className={"title " + hover} onClick={clickHandler}>{issue.title}</div>;
     }
