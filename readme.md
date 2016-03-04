@@ -58,7 +58,8 @@ fetchComments: function(url, cb) {
  * Uses regex to parse out @mentions and link to github user profile.
 
 #To Do
-  * Markdown parsing on preview text was imperfect with occasionally disastrous results and was removed.
   * No back end means no oAuth means limited Api Requests per hour.
   * History.  Would involve refactoring index component to fetch page by taking pagenum from
   history hash, which would allow using browser history to navigate through visited pages.
+  * In one instance, dangerouslysetinnerhtml has disastrous results. Page 10 is
+  the only page that will not load

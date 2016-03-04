@@ -28,7 +28,7 @@ var IssueInfo = React.createClass({
     }
 
     return(
-      <div className="issue-info">
+      <li className="issue-info">
         <div key="status" className="status">{status}</div>
         <div key="id" className={"id " + hover} onClick={clickHandler}>
           {"#"+issue.id}</div>
@@ -38,7 +38,7 @@ var IssueInfo = React.createClass({
             {"@" + issue.user.login}
           </div>
         </a>
-      </div>
+      </li>
     );
   }
 });

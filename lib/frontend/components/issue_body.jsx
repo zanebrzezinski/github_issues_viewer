@@ -52,20 +52,6 @@ var IssueBody = React.createClass({
   render: function() {
     var issue = this.props.issue;
 
-    var previewText = this.calculatePreview(issue.body);
-
-    var preview;
-    if (issue.body) {
-      dangerouslySetInnerHTML = {__html: marked(previewText)};
-      preview = <li dangerouslySetInnerHTML={dangerouslySetInnerHTML} className="preview"></li>;
-    } else {
-      preview = <li/>;
-    }
-
-    var title = {__html: marked(issue.title)};
-
-    var labels = this.calculateLabels();
-
     var clickHandler;
     var hover;
     if (this.props.clickHandler) {
@@ -76,13 +62,33 @@ var IssueBody = React.createClass({
       hover = "no-hover";
     }
 
+    var previewText = this.calculatePreview(issue.body);
+
+    var preview;
+    if (issue.body && this.props.modal && issue.id !== 127528953) {
+      dangerouslySetInnerHTML = {__html: marked(previewText)};
+      preview = <div dangerouslySetInnerHTML={dangerouslySetInnerHTML} className="preview"></div>;
+    } else {
+      preview = <div className="preview">{previewText}</div>;
+    }
+
+    var titleText;
+    var title;
+    if (this.props.modal && issue.id !== 127528953) {
+      titleText = {__html: marked(issue.title)};
+      title = <div dangerouslySetInnerHTML={titleText} className={"title " + hover}></div>;
+    } else {
+      title = <div className={"title " + hover} onClick={clickHandler}>{issue.title}</div>;
+    }
+
+    var labels = this.calculateLabels();
+
     return(
-      <div className="issue-body">
-        <li key="title" className={"title " + hover} onClick={clickHandler}
-          dangerouslySetInnerHTML={title}></li>
+      <li className="issue-body">
+        {title}
         <ul key="labels" className="labels">{labels}</ul>
         {preview}
-      </div>
+      </li>
     );
   }
 });
