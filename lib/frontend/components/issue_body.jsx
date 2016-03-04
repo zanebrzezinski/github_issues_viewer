@@ -68,7 +68,7 @@ var IssueBody = React.createClass({
     /* the weird number "issue.id" evaluated in the next two functions is a weird
     edge case that blows up the dangerouslySetInnerHTML.  I literally checked every page
     of npm issues and this seems to be the only one that blows up the app, so I coded around it.
-    I'm sure there is a better way to do this. */
+    I'm sure there is a better way to do this. I suspect the problem word is <Object> */
 
     if (issue.body && issue.id !== 127528953) {
       dangerouslySetInnerHTML = {__html: marked(previewText)};

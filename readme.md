@@ -61,5 +61,5 @@ fetchComments: function(url, cb) {
   * No back end means no oAuth means limited Api Requests per hour.
   * History.  Would involve refactoring index component to fetch page by taking pagenum from
   history hash, which would allow using browser history to navigate through visited pages.
-  * In one instance, dangerouslysetinnerhtml has disastrous results. Page 10 is
-  the only page that will not load
+  * In one instance, dangerouslysetinnerhtml has disastrous results. There is one
+  comment on page 10 (as of this writing) that will not load with dangerouslysetinnerhtml.
